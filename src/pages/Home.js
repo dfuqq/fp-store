@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import Product from '../components/Product';
+
 import { ProductContext } from '../contexts/ProductContext';
 
 const Home = () => {
@@ -16,11 +18,10 @@ const Home = () => {
 						md:max-w-none md:mx-0'>
 						{products.map((product) => {
 							return (
-								<div
-									className='w-full h-[300px] bg-pink-200 mb-4'
-									key={product.id}>
-									{product.title}
-								</div>
+								<Product
+									product={product}
+									key={product.id}
+								/>
 							);
 						})}
 					</div>
