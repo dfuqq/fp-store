@@ -12,6 +12,7 @@ const App = () => {
 	return (
 		<div className='overflow-hidden'>
 			<Router>
+				<Header />
 				<Routes>
 					<Route
 						path='/'
@@ -22,6 +23,8 @@ const App = () => {
 						element={<ProductDetails />}
 					/>
 				</Routes>
+				<Sidebar />
+				<Footer />
 			</Router>
 		</div>
 	);
