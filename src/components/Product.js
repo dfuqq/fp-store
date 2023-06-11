@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
-import { BsPlus, BsEyeFill } from 'react-icons/bs';
+import { BsPlus, BsEyeFill, BsStar } from 'react-icons/bs';
 
 import { CartContext } from '../contexts/CartContext';
 
@@ -38,8 +38,13 @@ const Product = ({ product }) => {
 						to={`/product/${id}`}
 						className='w-12 h-12 bg-white flex justify-center items-center 
                         text-primary drop-shadow-xl'>
-						<BsEyeFill />
+						<BsEyeFill className='text-xl' />
 					</Link>
+					<button>
+						<div className='flex justify-center items-center text-white w-12 h-12 bg-primary'>
+							<BsStar className='text-xl' />
+						</div>
+					</button>
 				</div>
 			</div>
 			{/* {Category & Title & Price} */}
