@@ -6,6 +6,15 @@ const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	// Item Amount State
 	const [itemAmount, setItemAmount] = useState(0);
+	// Total Price State
+	const [total, setTotal] = useState(0);
+
+	useEffect(() => {
+		const total = cart.reduce((acc, currentItem) => {
+			return acc + currentItem.price * currentItem.amount;
+		}, 0);
+		setTotal(total);
+	}, [cart]);
 
 	// Update Item Amount
 	useEffect(() => {
@@ -88,6 +97,7 @@ const CartProvider = ({ children }) => {
 				increaseAmount,
 				decreaseAmount,
 				itemAmount,
+				total,
 			}}>
 			{children}
 		</CartContext.Provider>
