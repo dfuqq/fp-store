@@ -33,7 +33,7 @@ const Sidebar = () => {
 				</div>
 			</div>
 			<div
-				className='flex flex-col gap-y-2 h-[360px] lg:h-[480px] 
+				className='flex flex-col gap-y-2 h-[230px] lg:h-[350px] 
 			overflow-y-auto overflow-x-hidden border-b'>
 				{cart.map((item) => {
 					return (
@@ -59,6 +59,18 @@ const Sidebar = () => {
 						<FiTrash2 />
 					</div>
 				</div>
+				<Link
+					to='/'
+					className='bg-gray-200 flex p-4 justify-center
+				items-center text-primary w-full font-medium'>
+					View Cart
+				</Link>
+				<Link
+					to='/'
+					className='bg-primary flex p-4 justify-center
+				items-center text-white w-full font-medium'>
+					Checkout
+				</Link>
 			</div>
 		</div>
 	);
