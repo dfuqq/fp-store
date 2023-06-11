@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { IoMdArrowForward } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
 
-// import CartItem from '../components/CartItem';
+import CartItem from '../components/CartItem';
 
 import { FavContext } from '../contexts/FavContext';
-// import { CartContext } from '../contexts/CartContext';
 
 const Favourites = () => {
-	const { favIsOpen, handleFavClose } = useContext(FavContext);
+	const { favIsOpen, handleFavClose, favList, clearList } =
+		useContext(FavContext);
 	// const { cart, clearCart, total, itemAmount } = useContext(CartContext);
 
 	return (
