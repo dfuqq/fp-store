@@ -2,15 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { SidebarContext } from '../contexts/SidebarContext';
+import { FavContext } from '../contexts/FavContext';
 import { CartContext } from '../contexts/CartContext';
 
-import { BsBag } from 'react-icons/bs';
+import { BsBag, BsStar } from 'react-icons/bs';
 import Logo from '../img/logo.svg';
 
 const Header = () => {
 	// Header State
 	const [isActive, setIsActive] = useState(false);
 	const { isOpen, setIsOpen } = useContext(SidebarContext);
+	const { favIsOpen, setFavIsOpen } = useContext(FavContext);
 	const { itemAmount } = useContext(CartContext);
 
 	useEffect(() => {
@@ -37,16 +39,24 @@ const Header = () => {
 					</div>
 				</Link>
 
-				{/* {Cart} */}
-				<div
-					onClick={() => setIsOpen(!isOpen)}
-					className='cursor-pointer flex relative'>
-					<BsBag className='text-2xl' />
+				<div className='flex items-center justify-between'>
+					{/* {Favourites} */}
 					<div
-						className='bg-red-500 absolute -right-2 -bottom-2
+						onClick={() => setFavIsOpen(!favIsOpen)}
+						className='mx-2 cursor-pointer flex relative'>
+						<BsStar className='text-2xl' />
+					</div>
+					{/* {Cart} */}
+					<div
+						onClick={() => setIsOpen(!isOpen)}
+						className='cursor-pointer flex relative'>
+						<BsBag className='text-2xl' />
+						<div
+							className='bg-red-500 absolute -right-2 -bottom-2
 					text-[12px] w-[18px] h-[18px] text-white rounded-full
 					flex justify-center items-center'>
-						{itemAmount}
+							{itemAmount}
+						</div>
 					</div>
 				</div>
 			</div>
