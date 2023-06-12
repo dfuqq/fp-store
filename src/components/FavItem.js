@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { IoMdClose } from 'react-icons/io';
 
 import { FavContext } from '../contexts/FavContext';
+import { CartContext } from '../contexts/CartContext';
 
 const FavItem = ({ item }) => {
 	const { removeFromList } = useContext(FavContext);
+	const { addToCart } = useContext(CartContext);
 	// Destructure Item
 	const { id, title, image, price } = item;
 
@@ -54,6 +56,12 @@ const FavItem = ({ item }) => {
 							${price} <br />
 							per item
 						</div>
+						<button
+							onClick={() => addToCart(item, item.id)}
+							className='bg-primary py-4 px-8 text-white
+							flex justify-center items-center'>
+							Add to Cart
+						</button>
 					</div>
 				</div>
 			</div>
