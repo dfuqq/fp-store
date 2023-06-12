@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IoMdClose, IoMdAdd, IoMdRemove } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
 
 import { FavContext } from '../contexts/FavContext';
 

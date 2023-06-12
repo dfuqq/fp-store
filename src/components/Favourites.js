@@ -2,16 +2,17 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IoMdArrowForward } from 'react-icons/io';
-import { FiTrash2 } from 'react-icons/fi';
 
 import FavItem from '../components/FavItem';
 
 import { FavContext } from '../contexts/FavContext';
+import { SidebarContext } from '../contexts/SidebarContext';
 
 const Favourites = () => {
-	const { favIsOpen, handleFavClose, favList, clearList } =
+	const { favIsOpen, handleFavClose, favList, clearList, favAmount } =
 		useContext(FavContext);
-	// const { cart, clearCart, total, itemAmount } = useContext(CartContext);
+
+	const { isOpen, setIsOpen } = useContext(SidebarContext);
 
 	return (
 		<div
@@ -22,7 +23,7 @@ const Favourites = () => {
 	px-4 lg:px-[35px]`}>
 			<div className='flex items-center justify-between py-6 border-b'>
 				<div className='uppercase text-sm font-semibold'>
-					Favourites (0)
+					Favourites ({favAmount})
 				</div>
 				{/* {Icon} */}
 				<div
@@ -44,34 +45,25 @@ const Favourites = () => {
 					);
 				})}
 			</div>
-			{/* <div className='flex flex-col gap-y-3 py-4 mt-4'> */}
-			{/* <div className='flex w-full justify-between items-center'>
-					{/* {Total price} */}
-			{/* <div className='uppercase font-semibold'>
-						<span className='mr-2'>Total:</span>$
-						{parseFloat(total).toFixed(2)}
-					</div>
-					{/* {Clear Cart Icon} */}
-			{/* <div
-						onClick={clearList}
-						className='cursor-pointer py-4 bg-red-500 text-white 
-					w-12 h-12 flex justify-center items-center text-xl'>
-						<FiTrash2 />
-					</div>
-				</div> */}
-			{/* <Link
+			<div className='flex flex-col gap-y-3 py-4 mt-4'>
+				<button
+					onClick={() => clearList()}
 					to='/'
 					className='bg-gray-200 flex p-4 justify-center
 				items-center text-primary w-full font-medium'>
-					View Cart
-				</Link> */}
-			{/* <Link
-					to='/'
+					Clear List
+				</button>
+				<Link
+					to={'/'}
+					onClick={() => {
+						handleFavClose();
+						setIsOpen(!isOpen);
+					}}
 					className='bg-primary flex p-4 justify-center
 				items-center text-white w-full font-medium'>
-					Checkout
-				</Link> */}
-			{/* </div> */}
+					Go To Cart
+				</Link>
+			</div>
 		</div>
 	);
 };
