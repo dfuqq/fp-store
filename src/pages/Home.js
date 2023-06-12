@@ -10,6 +10,7 @@ const Home = () => {
 	const { products } = useContext(ProductContext);
 	const [sortBy, setSortBy] = useState('');
 	const [filterByCategory, setFilterByCategory] = useState('');
+	const [searchQuery, setSearchQuery] = useState('');
 
 	// Create products based on sort option
 	const sortedProducts = () => {
@@ -40,9 +41,23 @@ const Home = () => {
 		}
 	};
 
+	const searchProducts = () => {
+		const query = searchQuery.trim().toLowerCase();
+		return filteredProducts().filter((product) => {
+			return (
+				product.title.toLowerCase().includes(query) ||
+				product.description.toLowerCase().includes(query)
+			);
+		});
+	};
+
 	const categories = [
 		...new Set(products.map((product) => product.category)),
 	];
+
+	const handleSearch = (e) => {
+		setSearchQuery(e.target.value);
+	};
 
 	return (
 		<div>
@@ -53,6 +68,7 @@ const Home = () => {
 						className='grid grid-cols-1 md:gridcols-2 lg:grid-cols-4 
 						xl:grid-cols-5 gap-[30px] max-w-sm mx-auto 
 						md:max-w-none md:mx-0'>
+						{/* {Sorting} */}
 						<div className='mb-4'>
 							<label htmlFor='sort'>Sort by:</label>
 							<select
@@ -69,6 +85,7 @@ const Home = () => {
 								</option>
 							</select>
 						</div>
+						{/* {Filtering} */}
 						<div className='mb-4'>
 							<label htmlFor='category'>
 								Filter by Category:
@@ -90,7 +107,18 @@ const Home = () => {
 								))}
 							</select>
 						</div>
-						{filteredProducts().map((product) => (
+						{/* {Searching} */}
+						<div className='mb-4'>
+							<label htmlFor='search'>Search:</label>
+							<input
+								type='text'
+								id='search'
+								className='p-2'
+								value={searchQuery}
+								onChange={handleSearch}
+							/>
+						</div>
+						{searchProducts().map((product) => (
 							<Product
 								product={product}
 								key={product.id}
