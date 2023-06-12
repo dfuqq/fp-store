@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import { BsPlus, BsEyeFill, BsStar } from 'react-icons/bs';
 
 import { CartContext } from '../contexts/CartContext';
+import { FavContext } from '../contexts/FavContext';
 
 const Product = ({ product }) => {
 	const { addToCart } = useContext(CartContext);
+	const { addToFav } = useContext(FavContext);
+
 	// Destructure product object
 	const { id, image, category, title, price } = product;
 	return (
@@ -40,7 +43,7 @@ const Product = ({ product }) => {
                         text-primary drop-shadow-xl'>
 						<BsEyeFill className='text-xl' />
 					</Link>
-					<button>
+					<button onClick={() => addToFav(product, id)}>
 						<div className='flex justify-center items-center text-white w-12 h-12 bg-primary'>
 							<BsStar className='text-xl' />
 						</div>

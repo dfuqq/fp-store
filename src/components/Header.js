@@ -12,7 +12,7 @@ const Header = () => {
 	// Header State
 	const [isActive, setIsActive] = useState(false);
 	const { isOpen, setIsOpen } = useContext(SidebarContext);
-	const { favIsOpen, setFavIsOpen } = useContext(FavContext);
+	const { favIsOpen, setFavIsOpen, favAmount } = useContext(FavContext);
 	const { itemAmount } = useContext(CartContext);
 
 	useEffect(() => {
@@ -45,6 +45,12 @@ const Header = () => {
 						onClick={() => setFavIsOpen(!favIsOpen)}
 						className='mx-2 cursor-pointer flex relative'>
 						<BsStar className='text-2xl' />
+						<div
+							className='bg-red-500 absolute -right-2 -bottom-2
+					text-[12px] w-[18px] h-[18px] text-white rounded-full
+					flex justify-center items-center'>
+							{favAmount}
+						</div>
 					</div>
 					{/* {Cart} */}
 					<div

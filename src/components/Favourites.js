@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IoMdArrowForward } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
 
-import CartItem from '../components/CartItem';
+import FavItem from '../components/FavItem';
 
 import { FavContext } from '../contexts/FavContext';
 
@@ -35,14 +35,14 @@ const Favourites = () => {
 			<div
 				className='flex flex-col gap-y-2 h-[230px] lg:h-[350px] 
 			overflow-y-auto overflow-x-hidden border-b'>
-				{/* {cart.map((item) => {
+				{favList.map((item) => {
 					return (
-						<CartItem
+						<FavItem
 							item={item}
 							key={item.id}
 						/>
 					);
-				})} */}
+				})}
 			</div>
 			{/* <div className='flex flex-col gap-y-3 py-4 mt-4'> */}
 			{/* <div className='flex w-full justify-between items-center'>
@@ -53,7 +53,7 @@ const Favourites = () => {
 					</div>
 					{/* {Clear Cart Icon} */}
 			{/* <div
-						onClick={clearCart}
+						onClick={clearList}
 						className='cursor-pointer py-4 bg-red-500 text-white 
 					w-12 h-12 flex justify-center items-center text-xl'>
 						<FiTrash2 />
