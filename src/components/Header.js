@@ -43,8 +43,12 @@ const Header = () => {
 					{/* {Favourites} */}
 					<div
 						onClick={() => setFavIsOpen(!favIsOpen)}
-						className='mx-2 cursor-pointer flex relative'>
-						<BsStar className='text-2xl' />
+						className='mx-4 cursor-pointer flex relative'>
+						<BsStar
+							className={`text-2xl ${
+								isActive ? 'fill-black' : 'fill-white'
+							}`}
+						/>
 						<div
 							className='bg-red-500 absolute -right-2 -bottom-2
 					text-[12px] w-[18px] h-[18px] text-white rounded-full
@@ -56,7 +60,11 @@ const Header = () => {
 					<div
 						onClick={() => setIsOpen(!isOpen)}
 						className='cursor-pointer flex relative'>
-						<BsBag className='text-2xl' />
+						<BsBag
+							className={`text-2xl ${
+								isActive ? 'fill-black' : 'fill-white'
+							}`}
+						/>
 						<div
 							className='bg-red-500 absolute -right-2 -bottom-2
 					text-[12px] w-[18px] h-[18px] text-white rounded-full

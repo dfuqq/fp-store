@@ -51,7 +51,7 @@ const Favourites = () => {
 					<label htmlFor='category'>Filter by Category:</label>
 					<select
 						id='category'
-						className='p-2'
+						className='p-2 border-b-2 border-black'
 						value={filterByCategory}
 						onChange={(e) => setFilterByCategory(e.target.value)}>
 						<option value=''>All</option>

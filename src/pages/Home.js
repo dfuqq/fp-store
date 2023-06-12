@@ -64,16 +64,13 @@ const Home = () => {
 			<Hero />
 			<section className='py-16'>
 				<div className='container mx-auto'>
-					<div
-						className='grid grid-cols-1 md:gridcols-2 lg:grid-cols-4 
-						xl:grid-cols-5 gap-[30px] max-w-sm mx-auto 
-						md:max-w-none md:mx-0'>
+					<div className='flex justify-between mx-auto'>
 						{/* {Sorting} */}
-						<div className='mb-4'>
-							<label htmlFor='sort'>Sort by:</label>
+						<div className='mb-4 p-2 max-w-[20vw]'>
 							<select
 								id='sort'
-								className='p-2'
+								className='p-2 border-b-2 border-black'
+								placeholder='Sort by'
 								value={sortBy}
 								onChange={(e) => setSortBy(e.target.value)}>
 								<option value=''>None</option>
@@ -85,14 +82,24 @@ const Home = () => {
 								</option>
 							</select>
 						</div>
+						{/* {Searching} */}
+						<div className='mb-4 p-2 min-w-[40vw]'>
+							{/* <label htmlFor='search'>Search:</label> */}
+							<input
+								type='text'
+								placeholder='Search'
+								id='search'
+								className='p-2 border-b-2 border-black w-full'
+								value={searchQuery}
+								onChange={handleSearch}
+							/>
+						</div>
 						{/* {Filtering} */}
-						<div className='mb-4'>
-							<label htmlFor='category'>
-								Filter by Category:
-							</label>
+						<div className='mb-4 p-2 max-w-[20vw]'>
+							<label htmlFor='category'>Filter:</label>
 							<select
 								id='category'
-								className='p-2'
+								className='p-2 border-b-2 border-black'
 								value={filterByCategory}
 								onChange={(e) =>
 									setFilterByCategory(e.target.value)
@@ -107,17 +114,11 @@ const Home = () => {
 								))}
 							</select>
 						</div>
-						{/* {Searching} */}
-						<div className='mb-4'>
-							<label htmlFor='search'>Search:</label>
-							<input
-								type='text'
-								id='search'
-								className='p-2'
-								value={searchQuery}
-								onChange={handleSearch}
-							/>
-						</div>
+					</div>
+					<div
+						className='grid grid-cols-1 md:gridcols-2 lg:grid-cols-4 
+						xl:grid-cols-5 gap-[30px] max-w-sm mx-auto 
+						md:max-w-none md:mx-0'>
 						{searchProducts().map((product) => (
 							<Product
 								product={product}
