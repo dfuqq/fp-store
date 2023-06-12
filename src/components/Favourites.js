@@ -34,7 +34,7 @@ const Favourites = () => {
 				</div>
 			</div>
 			<div
-				className='flex flex-col gap-y-2 h-[230px] lg:h-[350px] 
+				className='flex flex-col gap-y-2 h-[280px] lg:h-[410px] 
 			overflow-y-auto overflow-x-hidden border-b'>
 				{favList.map((item) => {
 					return (
