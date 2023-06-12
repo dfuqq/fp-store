@@ -8,6 +8,19 @@ const FavProvider = ({ children }) => {
 	// Item Amount State
 	const [favAmount, setFavAmount] = useState(0);
 
+	// Check if localStorage contains favorite items
+	useEffect(() => {
+		const storedFavList = localStorage.getItem('favList');
+		if (storedFavList) {
+			setFavList(JSON.parse(storedFavList));
+		}
+	}, []);
+
+	// Update localStorage with new Item or removed Item
+	useEffect(() => {
+		localStorage.setItem('favList', JSON.stringify(favList));
+	}, [favList]);
+
 	useEffect(() => {
 		if (favList) {
 			const amount = favList.reduce((acc, currentItem) => {
