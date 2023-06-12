@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { IoMdArrowForward } from 'react-icons/io';
 
-import FavItem from '../components/FavItem';
+import FavItem from './FavItem';
 
 import { FavContext } from '../contexts/FavContext';
 import { SidebarContext } from '../contexts/SidebarContext';
@@ -23,7 +23,7 @@ const Favourites = () => {
 	px-4 lg:px-[35px]`}>
 			<div className='flex items-center justify-between py-6 border-b'>
 				<div className='uppercase text-sm font-semibold'>
-					Favourites ({favAmount})
+					Favorites ({favAmount})
 				</div>
 				{/* {Icon} */}
 				<div

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 
 import Sidebar from './components/Sidebar';
-import Favourites from './components/Favourites';
+import Favorites from './components/Favorites';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -25,7 +25,7 @@ const App = () => {
 					/>
 				</Routes>
 				<Sidebar />
-				<Favourites />
+				<Favorites />
 				<Footer />
 			</Router>
 		</div>
