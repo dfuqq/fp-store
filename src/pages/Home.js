@@ -9,7 +9,9 @@ const Home = () => {
 	// Get Products from ProductContext
 	const { products } = useContext(ProductContext);
 	const [sortBy, setSortBy] = useState('');
+	const [filterByCategory, setFilterByCategory] = useState('');
 
+	// Create products based on sort option
 	const sortedProducts = () => {
 		if (sortBy === 'price') {
 			return products.slice().sort((a, b) => a.price - b.price);
@@ -27,6 +29,20 @@ const Home = () => {
 			return products;
 		}
 	};
+
+	const filteredProducts = () => {
+		if (filterByCategory === '') {
+			return sortedProducts();
+		} else {
+			return sortedProducts().filter(
+				(product) => product.category === filterByCategory
+			);
+		}
+	};
+
+	const categories = [
+		...new Set(products.map((product) => product.category)),
+	];
 
 	return (
 		<div>
@@ -53,7 +69,28 @@ const Home = () => {
 								</option>
 							</select>
 						</div>
-						{sortedProducts().map((product) => (
+						<div className='mb-4'>
+							<label htmlFor='category'>
+								Filter by Category:
+							</label>
+							<select
+								id='category'
+								className='p-2'
+								value={filterByCategory}
+								onChange={(e) =>
+									setFilterByCategory(e.target.value)
+								}>
+								<option value=''>All</option>
+								{categories.map((category) => (
+									<option
+										value={category}
+										key={category}>
+										{category}
+									</option>
+								))}
+							</select>
+						</div>
+						{filteredProducts().map((product) => (
 							<Product
 								product={product}
 								key={product.id}
