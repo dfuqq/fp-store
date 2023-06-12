@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import { CartContext } from '../contexts/CartContext';
 import { ProductContext } from '../contexts/ProductContext';
+import { FavContext } from '../contexts/FavContext';
 
 const ProductDetails = () => {
 	// Get product ID from URL
 	const { id } = useParams();
 	const { products } = useContext(ProductContext);
 	const { addToCart } = useContext(CartContext);
+	const { addToFav } = useContext(FavContext);
 
 	// Get single product based on ID
 	const product = products.find((item) => {
@@ -53,11 +55,19 @@ const ProductDetails = () => {
 							${price}
 						</div>
 						<p className='mb-8'>{description}</p>
-						<button
-							onClick={() => addToCart(product, product.id)}
-							className='bg-primary py-4 px-8 text-white'>
-							Add to Cart
-						</button>
+						<div className='flex space-x-4'>
+							<button
+								onClick={() => addToCart(product, product.id)}
+								className='bg-primary py-4 px-8 text-white'>
+								Add to Cart
+							</button>
+							<button
+								onClick={() => addToFav(product, product.id)}
+								className='bg-white py-4 px-8 text-primary
+								border border-primary'>
+								To Favorites
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
