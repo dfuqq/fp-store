@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IoMdArrowForward } from 'react-icons/io';
@@ -11,8 +11,19 @@ import { SidebarContext } from '../contexts/SidebarContext';
 const Favourites = () => {
 	const { favIsOpen, handleFavClose, favList, clearList, favAmount } =
 		useContext(FavContext);
-
 	const { isOpen, setIsOpen } = useContext(SidebarContext);
+
+	const [filterByCategory, setFilterByCategory] = useState('');
+
+	const filteredFavList = () => {
+		if (filterByCategory === '') {
+			return favList;
+		} else {
+			return favList.filter((item) => item.category === filterByCategory);
+		}
+	};
+
+	const categories = [...new Set(favList.map((item) => item.category))];
 
 	return (
 		<div
@@ -36,7 +47,24 @@ const Favourites = () => {
 			<div
 				className='flex flex-col gap-y-2 h-[280px] lg:h-[410px] 
 			overflow-y-auto overflow-x-hidden border-b'>
-				{favList.map((item) => {
+				<div className='mb-4'>
+					<label htmlFor='category'>Filter by Category:</label>
+					<select
+						id='category'
+						className='p-2'
+						value={filterByCategory}
+						onChange={(e) => setFilterByCategory(e.target.value)}>
+						<option value=''>All</option>
+						{categories.map((category) => (
+							<option
+								value={category}
+								key={category}>
+								{category}
+							</option>
+						))}
+					</select>
+				</div>
+				{filteredFavList().map((item) => {
 					return (
 						<FavItem
 							item={item}
